@@ -10,7 +10,7 @@ RappelzCmdLauncher must be run with administrator rights else SFrame either won'
 
 Compilation
 ---
-To compile, either use cmake:
+To compile, either use cmake and nmake:
 ```
 mkdir build
 cd build
@@ -18,5 +18,13 @@ cmake .. -G "NMake Makefiles"
 nmake
 ```
 
-Or create a project to compile `main.c` as a GUI program.
+or generate a Visual Studio project:
+```
+mkdir build
+cd build
+cmake ..
+nmake
+```
+
+or create a project to compile `main.c` as a GUI program.
 
