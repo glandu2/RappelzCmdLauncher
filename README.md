@@ -23,7 +23,6 @@ or generate a Visual Studio project:
 mkdir build
 cd build
 cmake ..
-nmake
 ```
 
 or create a project to compile `main.c` as a GUI program.
