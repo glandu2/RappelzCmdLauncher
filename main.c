@@ -75,7 +75,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	CloseHandle(pi.hThread);
 
 	//Wait for SFrame.exe to signal the event before exiting (else the event might be destroyed before SFrame could test its validity via _RUNNER env var)
-	WaitForSingleObject(event, INFINITE);
+	WaitForSingleObject(event, 120*1000); //timeout of 2 minutes to avoid hung processes
 
 	return 0;
 }
