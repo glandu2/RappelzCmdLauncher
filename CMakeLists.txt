@@ -1,4 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
 project(RappelzCmdLauncher)
+
+message("Build type: ${CMAKE_BUILD_TYPE}")
 
 add_executable(RappelzCmdLauncher WIN32 main.c)
 
