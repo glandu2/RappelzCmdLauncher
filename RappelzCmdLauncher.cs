@@ -13,7 +13,7 @@ namespace RappelzCmdLauncher
 		[DllImport("Kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi, CharSet = CharSet.Auto)]
 		public static extern HANDLE CreateEvent(ref SECURITY_ATTRIBUTES lpEventAttributes, [In, MarshalAs(UnmanagedType.Bool)] bool bManualReset, [In, MarshalAs(UnmanagedType.Bool)] bool bIntialState, [In, MarshalAs(UnmanagedType.BStr)] string lpName);
 
-		[DllImport("Kernel32.dll", SetLastError = true)]
+		[DllImport("Kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
 		static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
 
 		[StructLayout(LayoutKind.Sequential)]
