@@ -3,7 +3,6 @@
 HANDLE setEnv(const char* sframeExecutable) {
 	SECURITY_ATTRIBUTES securityAttrib;
 	HANDLE event;
-	char environVarName[128];
 	char environVarValue[128];
 
 	// Get SFrame executable name in ptr variable (ex: "SFrame.exe")
@@ -22,12 +21,10 @@ HANDLE setEnv(const char* sframeExecutable) {
 	//set "%s_PARENT"="Launcher.exe"
 	//set "%s_RUNNER"=<event> handle in decimal
 
-	wsprintf(environVarName, "%s_PARENT", ptr);
-	SetEnvironmentVariable(environVarName, "Launcher.exe");
+	SetEnvironmentVariable("sframe.exe_PARENT", "Launcher.exe");
 
-	wsprintf(environVarName, "%s_RUNNER", ptr);
 	wsprintf(environVarValue, "%I64u", (unsigned long long)event);
-	SetEnvironmentVariable(environVarName, environVarValue);
+	SetEnvironmentVariable("sframe.exe_RUNNER", environVarValue);
 
 	return event;
 }
