@@ -22,9 +22,11 @@ HANDLE setEnv(const char* sframeExecutable) {
 	//set "%s_RUNNER"=<event> handle in decimal
 
 	SetEnvironmentVariable("sframe.exe_PARENT", "Launcher.exe");
+	SetEnvironmentVariable("rpliz_get_pathSFRAME.EXE", "Launcher.exe");
 
-	wsprintf(environVarValue, "%I64u", (unsigned long long)event);
+	wsprintf(environVarValue, "%I64u", (unsigned long long) event);
 	SetEnvironmentVariable("sframe.exe_RUNNER", environVarValue);
+	SetEnvironmentVariable("rpliz_binarySFRAME.EXE", environVarValue);
 
 	return event;
 }
