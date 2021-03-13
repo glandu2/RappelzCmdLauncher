@@ -1,0 +1,30 @@
+image: Visual Studio 2019
+environment:
+  matrix:
+  - GENERATOR: Visual Studio 16 2019
+    BUILD_DIR: build-amd64
+build_script:
+- cmd: >-
+    mkdir %BUILD_DIR%
+    
+    cd %BUILD_DIR%
+    
+    cmake .. -G "%GENERATOR%" -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    
+    cmake --build . --target package --config RelWithDebInfo -- /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+    
+    FOR %%f in (*.zip) DO appveyor PushArtifact %%f
+deploy:
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  release: RappelzCmdLauncher $(APPVEYOR_REPO_TAG_NAME)
+  description: 'RappelzCmdLauncher release $(APPVEYOR_REPO_TAG_NAME)'
+  provider: GitHub
+  auth_token:
+    secure: BIuFpW5S/V5SGJ2UAnLNm/XSiBPemDobnPC2+9B3ElNYSfxdrCgvtHvAsTAA3d5h
+  artifact: /.*\.zip/  # upload all binaries package (not tests logs)
+  draft: false
+  prerelease: false
+  force_update: true
+  on:
+    APPVEYOR_REPO_TAG: true        # deploy on tag push only
+
